@@ -172,70 +172,45 @@
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form method="post">
+                        <!--Contact Form -->
+                        <form id="contactForm" method="post" class="needs-validation" novalidate>
                             {% csrf_token %}
+                            <!-- FieldSet -->
                             <fieldset>
-                                {% for field in form %}
+                                {{form.non_field_errors }}
+                                <!-- Name input-->
                                 <div class="form-floating mb-3">
-                                    {{field|add_class:"form-control"}}
-                                </div>
-                            </fieldset>
-                                {% endfor %}
-                            <div class="d-grid"><button class="btn btn-primary btn-xl " id="submitButton1" type="submit">Submit</button></div>
-                        </form>
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                            <!-- Message input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Submit</button></div>
-                        </form>
+                                    {% render_field form.name class="form-control" placeholder="Enter your name..."  %}
+                                    <label for={{form.name.id_for_label}}>Nome</label>
+                                    {{form.name.errors}}
+                                    <div class="invalid-feedback">Preencha o nome.</div>
+                                </div> <!-- /Name input-->
+                                <!-- Email address input-->
+                                <div class="form-floating mb-3">
+                                    {% render_field form.email class="form-control" placeholder="name@example.com" %}
+                                    <label for={{form.email.id_for_label}}>Email</label>
+                                    {{form.email.errors }}
+                                    <div class="invalid-feedback">Preencha o email.</div>
+                                </div> <!-- /Email address input -->
+                                <!-- Subject input-->
+                                <div class="form-floating mb-3">
+                                    {% render_field form.subject class="form-control" placeholder="name@example.com" %}
+                                     <label for={{form.subject.id_for_label}}>Assunto</label>
+                                    {{form.subject.errors}}
+                                    <div class="invalid-feedback">Preencha o assunto.</div>
+                                </div><!-- /Subject input-->
+                                <!-- Message input-->
+                                <div class="form-floating mb-3">
+                                    {% render_field form.message class="form-control" placeholder="Enter your message here..." style="height: 10rem" %}
+                                    <label for={{form.message.id_for_label}}>Mensagem</label>
+                                    {{form.message.errors}}
+                                    <div class="invalid-feedback">Preencha a mensagem.</div>
+                                </div> <!-- /Message input-->
+                            </fieldset> <!-- /FieldSet-->
+                            <!-- Submit input -->
+                            <div class="d-grid"><button class="btn btn-primary btn-xl " id="submitButton" type="submit">Submit</button></div>
+                            <!-- /Submit input -->
+                        </form> <!-- /Contact Form -->
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -245,11 +220,12 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> <!-- /Contact -->
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2021 - Wellington Ideão</div></div>
-        </footer>
+        </footer> <!-- /Footer -->
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- SimpleLightbox plugin JS-->
@@ -261,5 +237,27 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+            'use strict'
+
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.querySelectorAll('.needs-validation')
+
+              // Loop over them and prevent submission
+              Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                  form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                      event.preventDefault()
+                      event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                  }, false)
+                })
+            })()
+        </script>
     </body>
 </html>
