@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -178,6 +179,17 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
+                        <form method="post">
+                            {% csrf_token %}
+                            <fieldset>
+                                {% for field in form %}
+                                <div class="form-floating mb-3">
+                                    {{field|add_class:"form-control"}}
+                                </div>
+                            </fieldset>
+                                {% endfor %}
+                            <div class="d-grid"><button class="btn btn-primary btn-xl " id="submitButton1" type="submit">Submit</button></div>
+                        </form>
                         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
