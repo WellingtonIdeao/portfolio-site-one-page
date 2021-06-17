@@ -19,9 +19,6 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'portfolio/css/styles.css' %}" rel="stylesheet" />
-
-        <!-- Font-Awesome -->
-        <script src="https://kit.fontawesome.com/7525aea826.js" crossorigin="anonymous"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -66,7 +63,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> <!-- /About-->
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
@@ -96,7 +93,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> <!-- /Services-->
         <!-- Portfolio-->
         <div id="portfolio">
             <div class="container-fluid p-0">
@@ -159,7 +156,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> <!-- /Portfolio-->
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container px-4 px-lg-5">
@@ -175,40 +172,19 @@
                         <!--Contact Form -->
                         <form id="contactForm" method="post" class="needs-validation" novalidate>
                             {% csrf_token %}
+                            {{form.non_field_errors }}
                             <!-- FieldSet -->
                             <fieldset>
-                                {{form.non_field_errors }}
-                                <!-- Name input-->
+                                {% for field in form %}
                                 <div class="form-floating mb-3">
-                                    {% render_field form.name class="form-control" placeholder="Enter your name..."  %}
-                                    <label for={{form.name.id_for_label}}>Nome</label>
-                                    {{form.name.errors}}
-                                    <div class="invalid-feedback">Preencha o nome.</div>
-                                </div> <!-- /Name input-->
-                                <!-- Email address input-->
-                                <div class="form-floating mb-3">
-                                    {% render_field form.email class="form-control" placeholder="name@example.com" %}
-                                    <label for={{form.email.id_for_label}}>Email</label>
-                                    {{form.email.errors }}
-                                    <div class="invalid-feedback">Preencha o email.</div>
-                                </div> <!-- /Email address input -->
-                                <!-- Subject input-->
-                                <div class="form-floating mb-3">
-                                    {% render_field form.subject class="form-control" placeholder="name@example.com" %}
-                                     <label for={{form.subject.id_for_label}}>Assunto</label>
-                                    {{form.subject.errors}}
-                                    <div class="invalid-feedback">Preencha o assunto.</div>
-                                </div><!-- /Subject input-->
-                                <!-- Message input-->
-                                <div class="form-floating mb-3">
-                                    {% render_field form.message class="form-control" placeholder="Enter your message here..." style="height: 10rem" %}
-                                    <label for={{form.message.id_for_label}}>Mensagem</label>
-                                    {{form.message.errors}}
-                                    <div class="invalid-feedback">Preencha a mensagem.</div>
-                                </div> <!-- /Message input-->
+                                    {{field}}
+                                    {{field.label_tag}}
+                                    <div class="invalid-feedback">Preencha este campo.</div>
+                                </div>
+                                {% endfor %}
                             </fieldset> <!-- /FieldSet-->
                             <!-- Submit input -->
-                            <div class="d-grid"><button class="btn btn-primary btn-xl " id="submitButton" type="submit">Submit</button></div>
+                            <div class="d-grid"><button class="btn btn-primary btn-xl " id="submitButton" type="submit">Enviar</button></div>
                             <!-- /Submit input -->
                         </form> <!-- /Contact Form -->
                     </div>
@@ -216,7 +192,7 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-4 text-center mb-5 mb-lg-0">
                         <i class="bi-phone fs-2 mb-3 text-muted"></i>
-                        <div>+1 (555) 123-4567</div>
+                        <div>+55 (83) 99999-9999</div>
                     </div>
                 </div>
             </div>
@@ -232,11 +208,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
         <!-- Core theme JS-->
         <script src="{% static 'portfolio/js/scripts.js' %}"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!-- Add class needs-validation js-->
         <script>
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function () {
@@ -258,6 +230,6 @@
                   }, false)
                 })
             })()
-        </script>
+        </script> <!-- /Add class needs-validation js-->
     </body>
 </html>
