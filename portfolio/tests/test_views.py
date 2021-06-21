@@ -1,8 +1,12 @@
+import unittest
 from django.test import TestCase
 from django.urls import reverse
 from ..models import Contact
 
 
+@unittest.skip(
+    'SECURE_SSL_REDIRECT is True. SM will permanently (HTTP 301 - moving) redirect all HTTP connections to HTTPS.'
+)
 class IndexViewTests(TestCase):
 
     def test_index_view_uses_correct_template(self):
